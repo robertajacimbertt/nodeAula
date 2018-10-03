@@ -1,16 +1,16 @@
 let http = require("http");
+let fs = require("fs");
 
 let port = 3003;
 let server = http.createServer(function(req, res) {
     let page = '';
     let route = req.url;
 
-    console.log(route);
-
     if (route === "/") {
-        res.end("<html><body>barra</body></html>");
+        res.end(fs.readFileSync("./index.html"));
     } else if (route === "/about") {
-        res.end("<html><body>Sobre</body></html>");
+        route = req.url;
+        console.log(route);
     } else {
         res.end("<html><body>nenhum</body></html>");
     }
